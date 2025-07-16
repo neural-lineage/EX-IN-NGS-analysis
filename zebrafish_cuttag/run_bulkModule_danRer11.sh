@@ -1,0 +1,66 @@
+#!/bin/bash
+# Copyright (C) 2020 Fulong Yu
+#
+# CUT&RUNTools 2.0 is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+#
+# CUT&RUNTools 2.0 is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# A copy of the GNU General Public License has been distributed along with CUT&RUNTools and is found in LICENSE.md.
+
+configrue_file=$1 # $scriptdir/bulk-config.json
+sample_name=$2 # $scriptdir/bulk-config.json
+experiment_name=$sample_name
+# SCRIPT=`readlink -f $0`
+SCRIPT=`echo "$(cd "$(dirname "$0")" && pwd -P)/$(basename "$0")"`
+
+
+SCRIPTPATH=`dirname $SCRIPT`
+scriptdir=$SCRIPTPATH/src/bulk
+# convert configuration JSON files to bash variables
+eval "$(jq -r '.software_config | to_entries | .[] | .key + "=\"" + .value + "\""' < $configrue_file)"
+eval "$(jq -r '.input_output | to_entries | .[] | .key + "=\"" + .value + "\""' < $configrue_file)"
+eval "$(jq -r '.motif_finding | to_entries | .[] | .key + "=\"" + .value + "\""' < $configrue_file)"
+chrom_size_file=$SCRIPTPATH/assemblies/chrom."$organism_build"/"$organism_build".chrom.sizes
+#blacklist=$SCRIPTPATH/blacklist/"$organism_build".blacklist.bed
+#blacklist2=$SCRIPTPATH/blacklist/"$organism_build"_TA_repeat.bed
+
+workdir=$workdir/$experiment_name
+# check the parameters
+if [ "$spike_in" == "none" ]
+then
+    if [ "$spike_in_norm" == "TRUE" ]
+    then
+    >&2 echo [ERROR] Check the parameters of spike_in and spike_in_norm
+    exit
+    fi
+fi
+
+eGenomeSize=1373454788
+
+
+# also check T and F for spike_in_norm.....
+
+echo "==================================== Bulk data analysis pipeline will run =============================================================="
+    >&2 echo -e "## Input FASTQ folder:            $fastq_directory"
+    sleep 0.1
+    >&2 echo -e "## Sample name:                   $sample_name"
+    sleep 0.1
+    >&2 echo -e "## Workdir folder:                $workdir"
+    sleep 0.1
+    >&2 echo -e "## Experiment name:               $experiment_name"
+    sleep 0.1
+    >&2 echo -e "## Experiment type:               $experiment_type"
+    sleep 0.1
+    >&2 echo -e "## Reference genome:              $organism_build"
+    sleep 0.1
+    >&2 echo -e "## Spike-in genome:               $spike_in"
+    sleep 0.1
+    >&2 echo -e "## Spike-in normalization:        $spike_in_norm"
+    sleep 0.1
+    >&2 echo -e "## Fragment 120 filtration:       $frag_120"
+    sleep 0.1
+    echo -e "================================================================================================================================="
+
+
+. $scriptdir/bulk-pipeline.sh
+

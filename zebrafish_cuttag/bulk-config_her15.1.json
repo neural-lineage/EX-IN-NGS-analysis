@@ -1,0 +1,52 @@
+{
+    "software_config": {
+        "Rscriptbin": "/home/wangmei/anaconda3/envs/R4.0/bin", 
+        "pythonbin": "/home/wangmei/anaconda3/envs/cutruntools2.1/bin", 
+        "perlbin": "/home/wangmei/anaconda3/envs/cutruntools2.1/bin",
+        "javabin": "/home/wangmei/anaconda3/envs/cutruntools2.1/bin",
+        "bowtie2bin": "/home/wangmei/anaconda3/envs/cutruntools2.1/bin", 
+        "samtoolsbin": "/home/wangmei/anaconda3/envs/cutruntools2.1/bin", 
+        "macs2bin": "/home/wangmei/anaconda3/envs/cutruntools2.1/bin", 
+        "memebin": "/home/wangmei/anaconda3/envs/meme/bin", 
+        "bedopsbin": "/home/wangmei/anaconda3/envs/cutruntools2.1/bin", 
+        "bedtoolsbin": "/home/wangmei/anaconda3/envs/cutruntools2.1/bin", 
+        "path_deeptools": "/home/wangmei/anaconda3/envs/cutruntools2.1/bin",
+        "path_parallel": "/home/wangmei/anaconda3/envs/cutruntools2.1/bin", 
+        "path_tabix": "/home/wangmei/anaconda3/envs/cutruntools2.1/bin",
+	"bt2idx": "/home/wangmei/analysis/index/GRCz11-bowtie2", 
+	"genome_sequence": "/home/wangmei/app_source/CUT-RUNTools-2.0/install/assemblies/danRer11/danRer11.fa", 
+        "spike_in_bt2idx": "/home/wangmei/analysis/index/sacCer3-bowtie2", 
+        "spike_in_sequence": "/home/wangmei/app_source/CUT-RUNTools-2.0/install/assemblies/sacCer3/sacCer3.fa", 
+        "extratoolsbin": "/home/wangmei/app_source/CUT-RUNTools-2.0/install/", 
+        "extrasettings": "/home/wangmei/app_source/CUT-RUNTools-2.0/install/",
+        "kseqbin": "/home/wangmei/app_source/CUT-RUNTools-2.0/install/", 
+        "adapterpath": "/home/wangmei/app_source/CUT-RUNTools-2.0/adapters", 
+        "trimmomaticbin": "/home/wangmei/app_source/CUT-RUNTools-2.0/install/", 
+        "picardbin": "/home/wangmei/app_source/CUT-RUNTools-2.0/install/", 
+        "picardjarfile": "picard-2.8.0.jar", 
+        "trimmomaticjarfile": "trimmomatic-0.36.jar", 
+        "makecutmatrixbin": "/home/wangmei/.local/bin"
+    }, 
+	"input_output": {
+        "fastq_directory": "/home/wangmei/NGS/cuttag/lhx3_her15.1", 
+        "workdir": "/home/wangmei/NGS/cuttag/lhx3_her15.1", 
+        "fastq_sequence_length": "150", 
+        "organism_build": "danRer11",
+        "spike_in": "FALSE",
+        "spike_in_norm": "FALSE",
+        "spikein_scale": "10000",
+        "frag_120": "FALSE",
+        "peak_caller": "macs2",
+        "dup_peak_calling": "FALSE",
+        "cores": "8",
+        "experiment_type": "CUT&Tag",
+        "adaptor_type":"Nextera"
+    }, 
+    "motif_finding": {
+        "num_bp_from_summit": "100", 
+        "num_peaks": "1000", 
+        "total_peaks": "2000", 
+        "motif_scanning_pval": "0.0005", 
+        "num_motifs": "10"
+    }
+}
